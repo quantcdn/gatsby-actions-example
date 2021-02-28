@@ -38,4 +38,9 @@ jobs:
         env:
           QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
         run: quant info -c quant -p gatsby-actions-example -t $QUANT_TOKEN
-          
+        
+      - name: Deploy with Quant!
+        env:
+          QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
+        run: quant deploy $PWD/public -c quant -p gatsby-actions-example -t $QUANT_TOKEN
+
