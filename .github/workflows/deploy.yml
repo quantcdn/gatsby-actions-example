@@ -31,28 +31,35 @@ jobs:
       - name: Build the application
         run: npm run build
         
-      - name: INFO
-        uses: docker://quantcdn/cli:latest
+      - uses: quantcdn/deploy-action@v1
         with:
-          entrypoint: quant
-          args: info -c quant -p gatsby-actions-example -t ${{ secrets.QUANT_TOKEN }}
-
-      - name: INFO
-        uses: docker://quantcdn/cli:latest
-        with:
-          entrypoint: sh
-          args: -c ls /github/workspace
-
-      - name: Print build artefacts
-        run: echo $PWD && ls -la
-
-      - name: Quant info
-        env:
-          QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
-        run: quant info -c quant -p gatsby-actions-example -t $QUANT_TOKEN
+          customer: quant
+          project: gatsby-actions-example
+          token: $({ secrets.QUANT_TOKEN })
+          dir: public
         
-      - name: Deploy with Quant!
-        env:
-          QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
-        run: quant deploy $PWD/public -c quant -p gatsby-actions-example -t $QUANT_TOKEN
+#       - name: INFO
+#         uses: docker://quantcdn/cli:latest
+#         with:
+#           entrypoint: quant
+#           args: info -c quant -p gatsby-actions-example -t ${{ secrets.QUANT_TOKEN }}
+
+#       - name: INFO
+#         uses: docker://quantcdn/cli:latest
+#         with:
+#           entrypoint: sh
+#           args: -c ls /github/workspace
+
+#       - name: Print build artefacts
+#         run: echo $PWD && ls -la
+
+#       - name: Quant info
+#         env:
+#           QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
+#         run: quant info -c quant -p gatsby-actions-example -t $QUANT_TOKEN
+        
+#       - name: Deploy with Quant!
+#         env:
+#           QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
+#         run: quant deploy $PWD/public -c quant -p gatsby-actions-example -t $QUANT_TOKEN
 
