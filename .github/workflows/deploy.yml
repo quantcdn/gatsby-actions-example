@@ -30,6 +30,20 @@ jobs:
 
       - name: Build the application
         run: npm run build
+        
+      - name: INFO
+        uses: docker://quantcdn/cli:latest
+        env:
+          QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
+        with:
+          entrypoint: quant
+          args: info -c quant -p gatsby-actions-example -t $QUANT_TOKEN
+
+      - name: INFO
+        uses: docker://quantcdn/cli:latest
+        with:
+          entrypoint: sh
+          args: ls /github/workspace
 
       - name: Print build artefacts
         run: echo $PWD && ls -la
