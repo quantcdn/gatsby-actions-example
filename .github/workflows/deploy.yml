@@ -31,6 +31,9 @@ jobs:
       - name: Build the application
         run: npm run build
 
+      - name: Print build artefacts
+        run: echo $PWD && ls -la
+
       - name: Quant info
         env:
           QUANT_TOKEN: ${{ secrets.QUANT_TOKEN }}
