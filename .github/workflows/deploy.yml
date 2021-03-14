@@ -35,7 +35,7 @@ jobs:
         with:
           customer: quant
           project: gatsby-actions-example
-          token: $({ secrets.QUANT_TOKEN })
+          token: ${{ secrets.QUANT_TOKEN }}
           dir: public
         
 #       - name: INFO
